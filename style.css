@@ -1,189 +1,230 @@
+/* подключаем шрифты к странице директивой @font-face,
+разберёмся в следующем спринте */
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/PTMono-Regular.woff);
+  font-family: 'PTMono';
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/Lora-Regular.woff);
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/PlayfairDisplay-Bold.woff);
+  font-family: 'Playfair Display';
+  font-style: bold;
+  font-weight: 700;
+}
+
+/* свойства, установленные для всей видимой
+в браузере части страницы */
 .page {
-  font-family: 'Cormorant Garamond';
-}
-              /*_________________header________________________*/
-.header {
-  display: flex;
-  max-width: 1330px;
-  min-width: 1280px;
+  background-color: #161819; /* страница имеет тёмный фон */
+  color: white;              /* цвет текста - белый */
+  font-family: 'Lora';         /* шрифт, кроме оговорённых отдельно случаев, —  'Lora' */
+  padding: 120px 0;            /* внутренние отступы сверху и снизу по 120 пикселей, справа и слева нулевые */
+
+  /* эта магия делает наши шрифты красивыми,
+  разберёмся в отдельном курсе */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern";
 }
 
-.header__link {
-  font-size: 28px;
-  text-decoration: none;
-  color: #10191E;
-}
-.header__link::after{
-  content:"!"
-}
-.header__link[lang="ru"]::before {
-  content:"Привет, меня зовут ";
-}
-.header__link[lang="en"]::before {
-  content:"Hello, my name is ";
-}
-.header__link[lang="fr"]::before {
-  content:"Bonjour, je suis ";
+/* контент всей веб-страницы занимает 40 процентов
+ширины окна просмотра, располагается по центру */
+.content__container {
+  width: 40%;
+  margin: auto;
 }
 
+/* общее свойство заголовков — всей страницы, глав,
+разделов и подразделов — особый шрифт */
+.content__title {
+  font-family: 'Playfair Display';
+}
 
-              /*________________menu_________________________*/
-.menu {
-  display: flex;
-  justify-content: center;
-  min-height: 75px;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1330px;
-  min-width: 1280px;
-  }
+/* свойства заголовка всей страницы */
+.content__title_item_main {
+  color: #ff6666;
+  font-size: 55px;
+  line-height: 70px;
+  margin-bottom: 60px;
+}
 
+/* свойства названий глав и разделов */
+.content__title_item_sub {
+  color: #ff6666;
+  font-size: 55px;
+  line-height: 70px;
+  margin: 120px 0 60px;
+  width: 50%;
+}
+
+/* свойства заголовков подразделов */
+.content__title_item_method {
+  font-size: 40px;
+  line-height: 50px;
+  margin: 60px 0 20px;
+}
+
+/* свойства текста обычного абзаца */
+.content__text {
+  font-size: 24px;
+  line-height: 36px;
+  margin-bottom: 60px;
+}
+
+/* свойства текста цитат */
+.content__quote {
+  font-family: 'Lora';
+  font-size: 34px;
+  line-height: 42px;
+  padding: 40px;
+  margin-bottom: 60px;
+  border-top: 2px solid #ff6666;
+  border-bottom: 2px solid #ff6666;
+  position:relative;
+  top:5px;
+  left:60px;
+}
+
+/* свойства текста с указанием источника цитаты */
+.content__quote-origin {
+  display: block;
+  color: #a6a6a6;
+  text-align: right;
+  font-size: 22px;
+  margin-top: 52px;
+  margin-right: -40px;
+}
+
+/* далее следуют правила для меню и его пунктов;
+нам предстоит прописать их по мере изучения позиционирования */
+.menu__item {
+position:fixed;
+  z-index:1;
+}
+
+.menu__item_theme_landscape {
+top:40px;
+  left:40px;
+}
+
+.menu__item_theme_portrait {
+top:40px;
+  right:40px;
+}
+
+.menu__item_theme_viewpoint {
+bottom:40px;
+  left:40px;
+}
+
+.menu__item_theme_expression {
+bottom:40px;
+  right:40px;
+}
+.menu__item:hover .menu__picture {
+display:block;
+} 
+
+/* общие свойства всех ссылок меню на другие разделы сайта */
 .menu__link {
-  font-size: 18px;
+  color: #a6a6a6;
+  font-size: 16px;
   text-decoration: none;
-  color: #10191E;
-  margin-right: 20px;
-}
-.page__menu{
- margin: 40px auto; 
-}
-.menu__link_active{
-text-decoration: underline;
-}
-.menu__link:last-of-type{
-margin-right: 0;  
-}
-              /*_________________________________________*/
-.content {
-  max-width: 1330px;
-  min-width: 1280px;
- }
-.centered-block{
- margin: auto; 
-}
-.content__title{
-font-size: 34px;
-margin: 0 0 40px;
-text-align: center;   
-}
-.flex-row {
-   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.flex-column {
-  display: flex;
-  justify-content: space-between;
-}
-.flex-column_reversed {
-  flex-direction: column-reverse;
-}
-.flex-row_reversed {
-  flex-direction: row-reverse;
-}
-.flex-row_space_bottom{
-margin-bottom: 60px;  
-}
-.list{
- list-style-type:none;
-  padding:0px;
-  margin:0px; 
-}
-.project {
-  background-position: center;
-  background-size: cover;
-}
-.project__overlay{
-background-color: rgba(0, 0, 100, .8);
-    height: 100%;
-    width: 100%; /* растянули ссылку во весь блок */
-    display: flex;
-    justify-content: center;
-    align-items: center; /* выровняли текст по центру средствами flex */
-    text-decoration: none; /* убрали подчеркивание  */
-    color: white;
-    text-transform: uppercase;
-    font-size: 30px;
-    text-align: center;
-    box-sizing: border-box; /* задали внутренний фокус элемента, чтобы контейнер не расширялся */
-    padding: 20px; /* отступ, чтобы текст не касался краёв */  
-  opacity:0;
-}
-.project__overlay:hover{
- opacity:1; 
+  font-family: 'PTMono';
+  text-transform: uppercase;
 }
 
-.project_width_l {
-  width:636px;
-}
-.project_width_m{
-  width:306px;
-}
-.project_height_xl{
-  height:557px;
-}
-.project_height_l{
-  height:430px;
-}
-.project_height_m{
-  height:290px;
-}
-.project_height_s{
-  height:240px;
-}
-.project_name_music-album {
-  background-image: url(https://code.s3.yandex.net/web-code/album.png);
+/* изменение цвета ссылки на другой раздел сайта по наведении указателя мыши */
+.menu__link:hover {
+  color: #ff6666; 
 }
 
-.project_name_design-principles {
-  background-image: url(https://code.s3.yandex.net/web-code/design.png);
+/* общие свойства всех иллюстраций, всплывающих рядом с соответствующим
+пунктом меню: при бездействии пользователя они скрыты */
+.menu__picture {
+  display: none;
+  width: 300px;
+  position:absolute;
 }
 
-.project__video {
+/* далее следуют правила для всплывающих иллюстраций;
+нам предстоит прописать их в процессе прохождения этого курса */
+.menu__picture_theme_landscape {
+top:40px;
+  left:40px;
+}
+
+.menu__picture_theme_portrait {
+top:40px;
+  right:40px;
+}
+
+.menu__picture_theme_viewpoint {
+bottom:40px;
+  left:40px;
+}
+
+.menu__picture_theme_expression {
+bottom:40px;
+  right:40px;
+}
+
+/* общие свойства контейнеров с обычными иллюстрациями в тексте */
+.content__image {
+  margin: 60px 0;
+  position:relative;
+}
+
+/* общие свойства иллюстраций в тексте */
+.content__image-item {
+  width: 100%;
+}
+
+/* общие свойства "покрывал" для иллюстраций при бездействии пользователя */
+.content__image-cover {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background-color: rgba(0, 0, 0, .3);
+  opacity: 0;
+  position:absolute;
+  top:0px;
+  left:0px;
 }
 
-.project_name_slider {
-   background-image: url(https://code.s3.yandex.net/web-code/slider.gif);
+/* изменения свойств "покрывала" при наведении мыши на иллюстрации в тексте */
+.content__image-cover:hover {
+  opacity: 1;
 }
 
-.project_name_reactive {
-   background-image: url(https://code.s3.yandex.net/web-code/reactive.gif);
+/* свойства подписей с названиями иллюстраций */
+.content__image-name {
+  font-size: 14px;
+  position:absolute;
+  right:10px;
+  bottom:10px;
 }
 
-.project_name_how-to-study {
-  background-image: url(https://code.s3.yandex.net/web-code/how-to-study.png);
-  order: 3;
-}
-.project_name_across-russia {
-  background-image: url(https://code.s3.yandex.net/web-code/across-russia.png);
-  order: 2;
-  }
-.project_name_mesto {
-  background-image: url(https://code.s3.yandex.net/web-code/mesto.png);
-  order: 1;
-}
-              /*_________________________________________*/
-.footer {
-  height: 95px;
-  display: flex;
-  justify-content: center;
-  max-width: 1330px;
-  min-width: 1280px;
- }
-.footer__logo {
-  width: 145px;
-  height: 25px;
-  background-image: url(https://pictures.s3.yandex.net/logo_black.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  align-self: center;
+/* свойства контейнера с информацией об авторах и авторских правах */
+.content__item_type_copyright {
+  margin-top: 40px;
+  font-size: 22px;
+  line-height: 30px;
+  color: #a6a6a6;
 }
 
-
-
-
-
+/* свойства текста строки с информацией об авторе */
+.content__text_type_copyright {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 0;
+}
